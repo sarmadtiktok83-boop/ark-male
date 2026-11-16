@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ark-male</title> </title>
-    <!-- فۆنتێ نایاب یێ Tajawal -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <title>وێبسايتێ مەکتەبێ</title>
+    <!-- فۆنتێ سادە و جوان -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Vazirmatn', sans-serif;
         }
 
         body {
-            /* باکگراوەندێ پرۆفیشناڵ */
             background: linear-gradient(135deg, #e0e5ec 0%, #ffffff 100%);
             color: #2d3436;
             min-height: 100vh;
@@ -23,7 +22,6 @@
             overflow-x: hidden;
         }
 
-        /* شێوەیێن بازنەیی ل پشت دیزاینێ بۆ جوانیا Glassmorphism */
         .bg-orb {
             position: fixed;
             border-radius: 50%;
@@ -33,7 +31,6 @@
         .orb-1 { width: 400px; height: 400px; background: rgba(106, 4, 15, 0.15); top: -100px; right: -100px; }
         .orb-2 { width: 300px; height: 300px; background: rgba(0, 0, 0, 0.05); bottom: 100px; left: -50px; }
 
-        /* مینيۆیا 3D Glassmorphism */
         .sidebar {
             width: 280px;
             background: rgba(255, 255, 255, 0.4);
@@ -78,7 +75,6 @@
             border-color: transparent;
         }
 
-        /* دوگمەیا مینيۆیێ */
         .menu-btn {
             position: fixed;
             top: 25px;
@@ -107,7 +103,6 @@
             color: white;
         }
 
-        /* بەشێ سەرەکی */
         .main-content {
             flex: 1;
             padding: 100px 30px 50px;
@@ -130,7 +125,6 @@
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* کارتێن 3D Glassmorphism */
         .glass-card {
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(25px);
@@ -146,7 +140,6 @@
             z-index: 10;
         }
 
-        /* بەشێ ئەرکان - Full 3D */
         .input-group {
             display: flex;
             gap: 15px;
@@ -160,7 +153,7 @@
             border-radius: 18px;
             border: 2px solid rgba(255, 255, 255, 0.8);
             background: rgba(255, 255, 255, 0.7);
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             outline: none;
             box-shadow: inset 0 4px 8px rgba(0,0,0,0.04), 0 5px 15px rgba(0,0,0,0.02);
@@ -180,7 +173,7 @@
             border: none;
             background: linear-gradient(135deg, #9d0208, #6a040f);
             color: white;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 800;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -216,12 +209,24 @@
             border-color: #6a040f;
         }
 
-        .task-item span {
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: 700;
+        .task-content {
+            display: flex;
+            flex-direction: column;
             flex: 1;
+            cursor: pointer;
+        }
+
+        .task-content span {
+            font-size: 17px;
+            font-weight: 700;
             color: #2d3436;
+        }
+
+        .task-status {
+            font-size: 13px;
+            color: #6a040f;
+            margin-top: 5px;
+            font-weight: bold;
         }
 
         .task-item.completed {
@@ -230,9 +235,13 @@
             box-shadow: none;
         }
 
-        .task-item.completed span {
+        .task-item.completed .task-content span {
             text-decoration: line-through;
             color: #a0a0a0;
+        }
+
+        .task-item.completed .task-status {
+            color: #27ae60;
         }
 
         .delete-btn {
@@ -246,6 +255,7 @@
             font-size: 14px;
             transition: all 0.3s;
             box-shadow: 0 4px 10px rgba(214, 48, 49, 0.1);
+            margin-right: 15px;
         }
 
         .delete-btn:hover {
@@ -255,7 +265,6 @@
             box-shadow: 0 8px 20px rgba(214, 48, 49, 0.3);
         }
 
-        /* بەشێ خشتەیێ وانەیان - Full 3D */
         .table-container {
             perspective: 1200px;
             overflow-x: auto;
@@ -275,9 +284,8 @@
             padding: 20px 15px;
             border-radius: 16px;
             font-weight: 800;
-            font-size: 19px;
+            font-size: 17px;
             box-shadow: 0 8px 20px rgba(106, 4, 15, 0.3), inset 0 2px 5px rgba(255,255,255,0.3);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
         td {
@@ -286,7 +294,7 @@
             text-align: center;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 1);
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             color: #2d3436;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -308,33 +316,28 @@
             position: relative;
         }
 
-        /* جوانکرنا سکڕۆڵی (Scrollbar) */
         ::-webkit-scrollbar { width: 10px; height: 10px; }
         ::-webkit-scrollbar-track { background: rgba(0,0,0,0.02); border-radius: 10px; }
         ::-webkit-scrollbar-thumb { background: rgba(106, 4, 15, 0.5); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #6a040f; }
 
-        /* بۆ مۆبایلان (Responsive) */
         @media (max-width: 768px) {
             table { border-spacing: 8px; }
-            th, td { padding: 12px; font-size: 15px; }
+            th, td { padding: 12px; font-size: 14px; }
             .glass-card { padding: 25px; border-radius: 20px; }
             td:hover { transform: translateY(-5px) scale(1.05) translateZ(15px); }
             .main-content { padding: 90px 15px 30px; }
-            input[type="text"], button.add-btn { font-size: 16px; padding: 12px 20px; }
+            input[type="text"], button.add-btn { font-size: 15px; padding: 12px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- باکگراوەندێ جوان -->
     <div class="bg-orb orb-1"></div>
     <div class="bg-orb orb-2"></div>
 
-    <!-- دوگمەیا مینيۆیێ -->
     <button class="menu-btn" onclick="toggleSidebar()">☰</button>
 
-    <!-- مینيۆیا تەنیشتێ -->
     <div class="sidebar" id="sidebar">
         <ul>
             <li><button onclick="showPage('tasksPage')">ئەرکێن من</button></li>
@@ -342,21 +345,18 @@
         </ul>
     </div>
 
-    <!-- ناوەرۆکێ سەرەکی -->
     <div class="main-content">
         
-        <!-- لاپەرێ ئەرکان -->
         <div id="tasksPage" class="page active-page glass-card">
             <div class="input-group">
                 <input type="text" id="taskInput" placeholder="ئەرکێ خۆ ل ڤێرە بنڤیسە...">
                 <button class="add-btn" onclick="addTask()">زێدە بکە</button>
             </div>
             <ul class="task-list" id="taskList">
-                <!-- ئەرک دێ ژ Firebase ل ڤێرە هێنە نیشاندان -->
+                <!-- ئەرک دێ ل ڤێرە هێنە نیشاندان -->
             </ul>
         </div>
 
-        <!-- لاپەرێ خشتەیێ وانەیان -->
         <div id="timetablePage" class="page glass-card">
             <div class="table-container">
                 <table>
@@ -398,12 +398,10 @@
         </div>
     </div>
 
-    <!-- کۆدێ گرێدانا Firebase -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getDatabase, ref, push, onValue, update, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-        // زانیاریێن ئەکاونتێ تە یێ Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyBkguj6Z7B8OFilq-iOpq9sZPUKJjviZf0",
             authDomain: "ark-male.firebaseapp.com",
@@ -422,11 +420,25 @@
         const taskInput = document.getElementById('taskInput');
         const taskList = document.getElementById('taskList');
 
+        // کۆدێ وەرگرتنا لیستەیا ئەو ئەرکێن کو ڤی مۆبایلی/کۆمپیوتەری کلیک کرین
+        function getMyClickedTasks() {
+            return JSON.parse(localStorage.getItem('myClickedTasks') || '[]');
+        }
+
+        function saveMyClickedTask(taskId) {
+            const clicked = getMyClickedTasks();
+            if (!clicked.includes(taskId)) {
+                clicked.push(taskId);
+                localStorage.setItem('myClickedTasks', JSON.stringify(clicked));
+            }
+        }
+
         window.addTask = async function() {
             const text = taskInput.value.trim();
             if (text) {
                 await push(tasksRef, {
                     text: text,
+                    clicks: 0,
                     completed: false,
                     timestamp: Date.now()
                 });
@@ -446,8 +458,23 @@
                 tasksArray.forEach(task => {
                     const li = document.createElement('li');
                     li.className = `task-item ${task.completed ? 'completed' : ''}`;
+                    
+                    let clicks = task.clicks || 0;
+                    let statusText = "";
+                    
+                    if (task.completed) {
+                        statusText = "هەردوویان ئەرکێ خۆ کر ✔️";
+                    } else if (clicks === 1) {
+                        statusText = "ئێک ژ وە یێ کری (ل هیڤیا یێ دی) ⏳";
+                    } else {
+                        statusText = "هێشتا چ کەسان نەکریە";
+                    }
+
                     li.innerHTML = `
-                        <span onclick="toggleTask('${task.id}', ${task.completed})">${task.text}</span>
+                        <div class="task-content" onclick="toggleTask('${task.id}', ${clicks}, ${task.completed})">
+                            <span>${task.text}</span>
+                            <div class="task-status">${statusText}</div>
+                        </div>
                         <button class="delete-btn" onclick="deleteTask('${task.id}')">ژێبرن</button>
                     `;
                     taskList.appendChild(li);
@@ -455,9 +482,29 @@
             }
         });
 
-        window.toggleTask = async function(taskId, currentStatus) {
+        window.toggleTask = async function(taskId, currentClicks, isCompleted) {
+            if (isCompleted) return; // ئەگەر هەردوویان کربیت، چو کار ناکەت
+
+            const myClickedTasks = getMyClickedTasks();
+            
+            // ئەگەر تە پێشتر کلیک کربیت، ناهێلیت جارەکا دی کلیک بکەی
+            if (myClickedTasks.includes(taskId)) {
+                alert("تە ئەرکێ خۆ یێ بجهئینای! ل هیڤیا هەڤالێ خۆ بە دا ئەو ژی تەمام کەت.");
+                return;
+            }
+
+            // ئەگەر تە کلیک نەکربیت، کلیکەکێ زێدە دکەت
+            let newClicks = currentClicks + 1;
+            let willBeCompleted = newClicks >= 2;
+
             const taskRef = ref(db, 'tasks/' + taskId);
-            await update(taskRef, { completed: !currentStatus });
+            await update(taskRef, { 
+                clicks: newClicks,
+                completed: willBeCompleted 
+            });
+
+            // ئەرکی د براوسەرێ تە دا دپارێزیت دا کو تو نەشێی دووبارە کلیک بکەی
+            saveMyClickedTask(taskId);
         };
 
         window.deleteTask = async function(taskId) {
