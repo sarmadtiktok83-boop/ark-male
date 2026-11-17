@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>وێبسايتێ مەکتەبێ</title>
-    <!-- فۆنتێ سادە و جوان -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -48,9 +47,8 @@
         }
 
         .sidebar.active { right: 0; }
-
         .sidebar ul { list-style: none; padding: 20px; }
-        .sidebar ul li { margin-bottom: 20px; perspective: 1000px; }
+        .sidebar ul li { margin-bottom: 20px; }
 
         .sidebar ul li button {
             width: 100%;
@@ -64,14 +62,13 @@
             color: #6a040f;
             transition: all 0.4s ease;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05), inset 0 2px 5px rgba(255,255,255,1);
-            transform-style: preserve-3d;
         }
 
         .sidebar ul li button:hover {
             background: linear-gradient(135deg, #6a040f, #9d0208);
             color: white;
-            transform: translateZ(10px) translateY(-3px);
-            box-shadow: 0 10px 20px rgba(106, 4, 15, 0.3), inset 0 2px 5px rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(106, 4, 15, 0.3);
             border-color: transparent;
         }
 
@@ -98,7 +95,6 @@
 
         .menu-btn:hover {
             transform: scale(1.1) translateY(-2px);
-            box-shadow: 0 12px 25px rgba(106, 4, 15, 0.2);
             background: #6a040f;
             color: white;
         }
@@ -109,6 +105,7 @@
             transition: 0.4s;
             display: flex;
             justify-content: center;
+            width: 100%;
         }
 
         .page {
@@ -128,13 +125,11 @@
         .glass-card {
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: 25px;
             padding: 40px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), inset 0 2px 10px rgba(255, 255, 255, 0.8);
             position: relative;
-            z-index: 10;
         }
 
         /* بەشێ ئەرکان */
@@ -173,6 +168,7 @@
             cursor: pointer;
             transition: all 0.3s;
             box-shadow: 0 8px 20px rgba(106, 4, 15, 0.3), inset 0 2px 5px rgba(255,255,255,0.3);
+            white-space: nowrap;
         }
 
         button.add-btn:hover {
@@ -194,11 +190,9 @@
             box-shadow: 0 6px 15px rgba(0,0,0,0.04);
         }
         .task-item:hover { transform: scale(1.02); border-color: #6a040f; }
-
         .task-content { display: flex; flex-direction: column; flex: 1; cursor: pointer; }
         .task-content span { font-size: 17px; font-weight: 700; }
         .task-status { font-size: 13px; color: #6a040f; margin-top: 5px; font-weight: bold; }
-        
         .task-item.completed { background: rgba(200, 200, 200, 0.3); }
         .task-item.completed .task-content span { text-decoration: line-through; color: #a0a0a0; }
         .task-item.completed .task-status { color: #27ae60; }
@@ -208,25 +202,36 @@
             padding: 8px 18px; border-radius: 12px; cursor: pointer; font-weight: 800;
         }
 
-        /* بەشێ خشتەی */
-        .table-container { overflow-x: auto; padding-bottom: 30px; }
-        table { width: 100%; border-collapse: separate; border-spacing: 12px; }
+        /* بەشێ خشتەی یێ چارەسەرکری بۆ مۆبایلێ */
+        .table-container { 
+            overflow-x: auto; 
+            padding-bottom: 20px; 
+            -webkit-overflow-scrolling: touch; /* بۆ سکڕۆلا نەرم ل سەر ئایفۆنێ */
+        }
+        table { 
+            width: 100%; 
+            min-width: 700px; /* ئەڤە نەناهێلیت خشتە بچووک ببیت و تێک بچیت */
+            border-collapse: separate; 
+            border-spacing: 10px; 
+        }
         th {
             background: linear-gradient(135deg, #6a040f, #9d0208); color: white;
-            padding: 20px 15px; border-radius: 16px; font-weight: 800;
+            padding: 18px 15px; border-radius: 16px; font-weight: 800;
+            white-space: nowrap; /* نڤیسینێ نا شکێنیتە سەر دوو رێزان */
         }
         td {
-            background: rgba(255, 255, 255, 0.7); padding: 20px 15px;
+            background: rgba(255, 255, 255, 0.7); padding: 18px 15px;
             text-align: center; border-radius: 16px; font-weight: 700;
             border: 1px solid rgba(255, 255, 255, 1); cursor: pointer; transition: 0.3s;
+            white-space: nowrap; /* نڤیسینێ نا شکێنیتە سەر دوو رێزان */
         }
         td:hover {
-            transform: translateY(-8px) scale(1.08);
+            transform: translateY(-8px) scale(1.05);
             border: 2px solid #6a040f; color: #6a040f;
             background: white;
         }
 
-        /* بەشێ وێنەیێن واجباتان و چاتێ (نوی) */
+        /* بەشێ وێنەیێن واجباتان و چاتێ */
         .upload-label {
             display: flex; justify-content: center; align-items: center;
             background: rgba(255,255,255,0.7); border: 2px dashed #6a040f;
@@ -243,7 +248,9 @@
         .hw-post img {
             width: 100%; border-radius: 15px; max-height: 400px; object-fit: cover;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 15px; border: 2px solid white;
+            cursor: zoom-in; transition: transform 0.3s;
         }
+        .hw-post img:hover { transform: scale(1.02); border-color: #6a040f; }
         .chat-box { background: rgba(255, 255, 255, 0.5); border-radius: 15px; padding: 15px; }
         .chat-messages { max-height: 200px; overflow-y: auto; margin-bottom: 15px; padding-right: 5px; }
         .chat-msg {
@@ -251,22 +258,62 @@
             margin-bottom: 8px; font-size: 14px; border-right: 4px solid #6a040f;
         }
         .chat-sender { font-weight: 800; color: #6a040f; font-size: 12px; display: block; margin-bottom: 3px; }
-        
         .chat-inputs { display: flex; gap: 10px; }
         .chat-inputs input { padding: 12px 15px; border-radius: 12px; flex: 1; font-size: 14px; }
         .chat-inputs button { padding: 0 20px; border-radius: 12px; font-size: 14px; }
         
-        ::-webkit-scrollbar { width: 8px; }
+        /* Modal for 3D Image Zoom */
+        .image-modal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+            width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            align-items: center; justify-content: center; opacity: 0;
+            transition: opacity 0.3s ease; cursor: zoom-out;
+        }
+        .image-modal.show { display: flex; opacity: 1; }
+        .modal-content {
+            max-width: 90%; max-height: 90vh; border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transform: scale(0.5) translateY(50px);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 4px solid white;
+        }
+        .image-modal.show .modal-content { transform: scale(1) translateY(0); }
+        .close-modal {
+            position: absolute; top: 20px; right: 30px; color: white;
+            font-size: 45px; font-weight: bold; cursor: pointer; transition: 0.3s;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .close-modal:hover { color: #d63031; transform: scale(1.2); }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(106, 4, 15, 0.4); border-radius: 10px; }
 
+        /* راستڤەکرنا کێشەیا مۆبایلێ ب تەمامی */
         @media (max-width: 768px) {
-            table { border-spacing: 8px; }
-            th, td { padding: 12px; font-size: 14px; }
-            .glass-card { padding: 25px; }
-            .main-content { padding: 90px 15px 30px; }
+            .main-content { 
+                padding: 85px 10px 20px; /* کێمکرنا پادینگێ دا جهـ زێدەتر بیت */
+            }
+            .glass-card { 
+                padding: 20px 15px; 
+                border-radius: 18px; 
+            }
+            .menu-btn { 
+                top: 15px; right: 15px; width: 45px; height: 45px; font-size: 22px; 
+            }
+            table { 
+                border-spacing: 6px; 
+                min-width: 650px; /* ل ڤێرە خشتە دێ جهێ خۆ گریت و تێک ناچیت */
+            }
+            th, td { 
+                padding: 12px 10px; 
+                font-size: 14px; 
+            }
             .chat-inputs { flex-direction: column; }
             .chat-inputs button { padding: 12px; }
+            .input-group { flex-direction: column; gap: 10px; }
+            button.add-btn { padding: 15px; width: 100%; }
         }
     </style>
 </head>
@@ -285,9 +332,14 @@
         </ul>
     </div>
 
+    <!-- Image Zoom Modal -->
+    <div id="imageZoomModal" class="image-modal" onclick="closeImageZoom()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="zoomedImageSrc">
+    </div>
+
     <div class="main-content">
         
-        <!-- لاپەرێ ئەرکان -->
         <div id="tasksPage" class="page active-page glass-card">
             <h2 style="color: #6a040f; text-align: center; margin-bottom: 20px;">ئەرکێن رۆژانە</h2>
             <div class="input-group">
@@ -297,7 +349,6 @@
             <ul class="task-list" id="taskList"></ul>
         </div>
 
-        <!-- لاپەرێ خشتەیێ وانەیان -->
         <div id="timetablePage" class="page glass-card">
             <h2 style="color: #6a040f; text-align: center; margin-bottom: 20px;">خشتەیێ وانەیان</h2>
             <div class="table-container">
@@ -318,7 +369,6 @@
             </div>
         </div>
 
-        <!-- لاپەرێ وێنەیێن واجباتان و چاتێ (نوی) -->
         <div id="homeworkPhotosPage" class="page glass-card">
             <h2 style="color: #6a040f; text-align: center; margin-bottom: 20px;">وێنە و بەحسکرنا واجباتان</h2>
             <div class="input-group" style="margin-bottom: 10px;">
@@ -326,9 +376,7 @@
                 <label for="hwImageInput" id="hwFileLabel" class="upload-label">📷 وێنەیێ واجبی هەلبژێرە (کلیک بکە)</label>
                 <button class="add-btn" onclick="uploadHomeworkImage()" id="hwUploadBtn">بەلاڤ بکە</button>
             </div>
-            <div id="homeworkPostsContainer">
-                <!-- پۆستێن وێنەیان و چات دێ ل ڤێرە هێنە نیشاندان -->
-            </div>
+            <div id="homeworkPostsContainer"></div>
         </div>
 
     </div>
@@ -351,11 +399,23 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
         
-        // References
         const tasksRef = ref(db, 'tasks');
         const homeworkPhotosRef = ref(db, 'homeworkPhotos');
 
-        // --- بەشێ ئەرکان (بەشێ بەرێ) ---
+        // Zoom Functions
+        window.openImageZoom = function(imageSrc) {
+            const modal = document.getElementById('imageZoomModal');
+            const img = document.getElementById('zoomedImageSrc');
+            img.src = imageSrc;
+            modal.classList.add('show');
+        };
+
+        window.closeImageZoom = function() {
+            const modal = document.getElementById('imageZoomModal');
+            modal.classList.remove('show');
+        };
+
+        // Tasks Functions
         function getMyClickedTasks() { return JSON.parse(localStorage.getItem('myClickedTasks') || '[]'); }
         function saveMyClickedTask(taskId) {
             const clicked = getMyClickedTasks();
@@ -408,15 +468,12 @@
 
         window.deleteTask = async function(taskId) { await remove(ref(db, 'tasks/' + taskId)); };
 
-        // --- بەشێ وێنەیێن واجباتان و چاتێ (نوی) ---
-        
-        // گۆهڕینا ناڤێ لێبلێ دەمێ وێنە دهێتە هەلبژارتن
+        // Photo Upload & Chat Functions
         window.updateFileName = function() {
             const file = document.getElementById('hwImageInput').files[0];
             if(file) document.getElementById('hwFileLabel').innerText = "✔️ وێنە هاتە هەلبژارتن: " + file.name;
         };
 
-        // ئەپلۆدکرنا وێنەی ب قەبارەیەکێ بچووکتر
         window.uploadHomeworkImage = function() {
             const fileInput = document.getElementById('hwImageInput');
             const file = fileInput.files[0];
@@ -426,7 +483,6 @@
             reader.onload = function(e) {
                 const img = new Image();
                 img.onload = function() {
-                    // زڤراندنا وێنەی بۆ قەبارەیەکێ گونجای بۆ داتابەیسێ
                     const canvas = document.createElement('canvas');
                     const MAX_WIDTH = 700; 
                     const scaleSize = MAX_WIDTH / img.width;
@@ -436,7 +492,7 @@
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                     
-                    const base64Image = canvas.toDataURL('image/jpeg', 0.6); // بچووککرنا کوالیتیا وێنەی بۆ 60%
+                    const base64Image = canvas.toDataURL('image/jpeg', 0.6); 
 
                     document.getElementById('hwUploadBtn').innerText = "دهێتە هنارتن...";
                     
@@ -446,7 +502,7 @@
                     }).then(() => {
                         document.getElementById('hwUploadBtn').innerText = "بەلاڤ بکە";
                         document.getElementById('hwFileLabel').innerText = "📷 وێنەیێ واجبی هەلبژێرە (کلیک بکە)";
-                        fileInput.value = ''; // پاقژکرنا ئینپوتی
+                        fileInput.value = ''; 
                     });
                 }
                 img.src = e.target.result;
@@ -454,20 +510,17 @@
             reader.readAsDataURL(file);
         };
 
-        // نیشاندانا وێنەیان و چاتێ
         onValue(homeworkPhotosRef, (snapshot) => {
             const container = document.getElementById('homeworkPostsContainer');
             container.innerHTML = '';
             const data = snapshot.val();
             if (data) {
-                // رێزکرن ل دووڤ دەمی (نویترین دکەڤیتە سەری)
                 const postsArray = Object.keys(data).map(key => ({ id: key, ...data[key] })).sort((a, b) => b.timestamp - a.timestamp);
                 
                 postsArray.forEach(post => {
                     const postDiv = document.createElement('div');
                     postDiv.className = 'hw-post';
                     
-                    // دەرئێخستنا نامەیێن چاتێ
                     let chatsHtml = '';
                     if (post.chats) {
                         const chatsArray = Object.values(post.chats).sort((a, b) => a.timestamp - b.timestamp);
@@ -486,7 +539,7 @@
                     postDiv.innerHTML = `
                         <button class="delete-btn" style="float:left; padding:5px 10px; margin-bottom:10px;" onclick="deleteHwPost('${post.id}')">ژێبرنا پۆستی</button>
                         <div style="clear:both;"></div>
-                        <img src="${post.imageStr}" alt="واجب">
+                        <img src="${post.imageStr}" alt="واجب" onclick="openImageZoom('${post.imageStr}')" title="کلیک بکە بۆ مەزنکرنێ">
                         <div class="chat-box">
                             <h4 style="color:#6a040f; margin-bottom:10px;">چات و پرسیار ل سەر ڤی واجبی:</h4>
                             <div class="chat-messages" id="chatMsgs_${post.id}">
@@ -501,18 +554,15 @@
                     `;
                     container.appendChild(postDiv);
 
-                    // زڤراندنا ناڤێ تە ژ لۆکال ستۆرەجێ دا نەڤێت هەردەم بنڤیسی
                     const savedName = localStorage.getItem('studentName');
                     if(savedName) document.getElementById(`chatName_${post.id}`).value = savedName;
                     
-                    // ئۆتۆماتیک بچیتە خوارێ بۆ دیتنا نویترین نامە
                     const msgsDiv = document.getElementById(`chatMsgs_${post.id}`);
                     msgsDiv.scrollTop = msgsDiv.scrollHeight;
                 });
             }
         });
 
-        // هنارتنا نامەیێ بۆ چاتا بن وێنەیی
         window.sendChat = async function(postId) {
             const nameInput = document.getElementById(`chatName_${postId}`);
             const textInput = document.getElementById(`chatText_${postId}`);
@@ -522,27 +572,20 @@
             if (!senderName) { alert("هیڤی دکەین ناڤێ خۆ بنڤیسە!"); nameInput.focus(); return; }
             if (!message) { alert("پەیام ڤالایە!"); textInput.focus(); return; }
 
-            // پاراستنا ناڤی دا جارەکا دی داخواز نەکەت
             localStorage.setItem('studentName', senderName);
 
             const postChatsRef = ref(db, `homeworkPhotos/${postId}/chats`);
-            await push(postChatsRef, {
-                sender: senderName,
-                message: message,
-                timestamp: Date.now()
-            });
+            await push(postChatsRef, { sender: senderName, message: message, timestamp: Date.now() });
 
             textInput.value = '';
         };
 
-        // رەشکرنا پۆستێ وێنەی
         window.deleteHwPost = async function(postId) {
             if(confirm("تۆ یێ پشت راستی تە دڤێت ڤی وێنەی ژێببەی؟")) {
                 await remove(ref(db, `homeworkPhotos/${postId}`));
             }
         };
 
-        // --- Navigation ---
         window.toggleSidebar = function() { document.getElementById('sidebar').classList.toggle('active'); };
         window.showPage = function(pageId) {
             document.querySelectorAll('.page').forEach(page => page.classList.remove('active-page'));
